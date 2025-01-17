@@ -1,0 +1,14 @@
+{
+  "name": "@workspace/stream-protocol-server",
+  "version": "1.0.0",
+  "description": "stream-protocol-server",
+  "scripts": {},
+  "license": "ISC",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
+  }
+}
