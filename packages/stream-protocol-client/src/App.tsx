@@ -1,4 +1,5 @@
 
+import { useCompletion } from 'ai/react';
 
 // @ts-ignore
 BigInt.prototype.toJSON = function () {
@@ -6,10 +7,16 @@ BigInt.prototype.toJSON = function () {
 };
 
 function App() {
+  const { completion, input, handleInputChange, handleSubmit } = useCompletion({
+    streamProtocol: 'text',
+    api: 'http://localhost:3808/chat',
+  });
   return (
-    <div>
-      <h1>AGW React Demo</h1>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <input name="prompt" value={input} onChange={handleInputChange} />
+      <button type="submit">Submit</button>
+      <div>{completion}</div>
+    </form>
   );
 }
 
