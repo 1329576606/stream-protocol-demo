@@ -9,7 +9,7 @@ BigInt.prototype.toJSON = function () {
 function App() {
   const { completion, input, handleInputChange, handleSubmit } = useCompletion({
     streamProtocol: 'text',
-    api: 'http://localhost:3808/chat',
+    api: 'http://localhost:3001/chat',
   });
   return (
     <form onSubmit={handleSubmit}>

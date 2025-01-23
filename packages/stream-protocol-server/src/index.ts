@@ -39,7 +39,7 @@ app.post('/chat', (req, res) => {
                 temperature: 0,
             }, {
                 apiKey: process.env['OPENAI_API_KEY'],
-                baseURL: process.env["OPENAPI_URL"],
+                baseURL: process.env["OPENAI_URL"],
             });
             const stream = await model.stream(prompt);
             LangChainAdapter.mergeIntoDataStream(stream, { dataStream: dataStreamWriter });
