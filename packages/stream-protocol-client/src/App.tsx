@@ -1,5 +1,6 @@
 
-import { useCompletion } from 'ai/react';
+import { useChat, useCompletion } from 'ai/react';
+import Markdown from 'react-markdown';
 
 // @ts-ignore
 BigInt.prototype.toJSON = function () {
@@ -7,16 +8,26 @@ BigInt.prototype.toJSON = function () {
 };
 
 function App() {
-  const { completion, input, handleInputChange, handleSubmit } = useCompletion({
-    streamProtocol: 'text',
-    api: 'http://localhost:3001/chat',
+  const { messages, input, handleInputChange, handleSubmit } = useChat({
+    streamProtocol: 'data',
+    api: 'http://localhost:3001/ai/chat',
   });
+  console.log(messages);
+  
   return (
-    <form onSubmit={handleSubmit}>
-      <input name="prompt" value={input} onChange={handleInputChange} />
-      <button type="submit">Submit</button>
-      <div>{completion}</div>
-    </form>
+    <>
+      {messages.map(message => (
+        <div key={message.id}>
+          {message.role === 'user' ? 'User: ' : 'AI: '}
+          <Markdown>{message.content}</Markdown>
+        </div>
+      ))}
+
+      <form onSubmit={handleSubmit}>
+        <input name="prompt" value={input} onChange={handleInputChange} />
+        <button type="submit">Submit</button>
+      </form>
+    </>
   );
 }
 
